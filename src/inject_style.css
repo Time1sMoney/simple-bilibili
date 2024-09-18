@@ -40,7 +40,7 @@
   z-index: 9999 !important;
 }
 .feed-roll-btn::after {
-  content: "Press F";
+  content: "Shift + F";
 }
 
 .roll-btn {

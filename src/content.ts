@@ -17,7 +17,7 @@ function layout() {
   if (feedRollBtn) {
     document.body.appendChild(feedRollBtn);
     window.addEventListener("keydown", (e) => {
-      if (e.key === "f") {
+      if (e.shiftKey && e.code === "KeyF") {
         (feedRollBtn.children[0] as HTMLButtonElement).click();
         e.preventDefault();
       }
