@@ -1,0 +1,27 @@
+{
+  "manifest_version": 3,
+  "name": "Simple Bilibili",
+  "version": "1.0",
+  "description": "A simple Chrome extension to rewrite bilibili's homepage layout.",
+  "permissions": ["storage", "scripting", "activeTab"],
+  "background": {
+    "service_worker": "src/background.js"
+  },
+  "icons": {
+    "16": "icons/icon16.png",
+    "48": "icons/icon48.png",
+    "128": "icons/icon128.png"
+  },
+  "action": {
+    "default_popup": "src/popup.html",
+    "default_icon": "icons/icon48.png",
+    "default_title": "Simple Bilibili"
+  },
+  "content_scripts": [
+    {
+      "matches": ["https://www.bilibili.com/*"],
+      "js": ["src/content.js"],
+      "css": ["assets/inject_style.css"]
+    }
+  ]
+}

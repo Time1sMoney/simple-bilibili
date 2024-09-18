@@ -1,0 +1,90 @@
+ /* 隐藏推荐 swiper */
+.recommended-swipe {
+  display: none !important;
+}
+ /* 修改顶部 */
+.bili-header__bar {
+  justify-content: end !important;
+}
+.bili-header .bili-header__banner {
+  z-index: 1000 !important;
+}
+.left-entry {
+  display: none !important;
+}
+.right-entry > .right-entry-item {
+  display: none !important;
+}
+.right-entry {
+  margin-right: 116px !important;
+}
+.vip-wrap {
+  display: none !important;
+}
+
+/* 修改频道栏 */
+.channel-icons,.channel-items__right {
+  display: none !important;
+}
+.channel-items__left {
+  padding: 0 !important;
+  border-right: none !important;
+}
+
+.feed-roll-btn {
+  position: fixed !important;
+  left: unset !important;
+  top: unset !important;
+  right:  40px !important;
+  bottom: 40px !important;
+  z-index: 9999 !important;
+}
+.feed-roll-btn::after {
+  content: "Press F";
+}
+
+.roll-btn {
+  width: fit-content !important;
+}
+.roll-btn > svg {
+  width: 32px !important;
+  height: 32px !important;
+  margin-bottom: 0 !important;
+}
+.roll-btn > span {
+  display: none !important;
+}
+/* 修改悬浮按钮 */
+.palette-button-wrap {
+  display: none !important;
+}
+/* 修改推荐视频的列数 */
+.container {
+  grid-template-columns: repeat(4, 1fr) !important; 
+}
+
+.simple-bilibili-search-container {
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  transform: translate(-50%, -50%);
+  width: 50%;
+}
+
+.center-search__bar {
+  margin: 0 !important;
+  min-width: none !important;
+  max-width: none !important;
+  width: 100% !important;
+}
+ /* 隐藏推荐主播卡片 */
+.floor-single-card {
+  display: none !important;
+}
+ /* 隐藏广告卡片 */
+.bili-video-card:not(.enable-no-interest) {
+  display: none !important;
+}
+.feed-card,.bili-video-card {
+  margin: 0 !important;
+}
