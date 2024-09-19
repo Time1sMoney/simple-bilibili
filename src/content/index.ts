@@ -33,3 +33,10 @@ const observer = new MutationObserver(() => {
 });
 
 observer.observe(document.body, { childList: true, subtree: true });
+
+/**动态设置columns */
+chrome.runtime.onMessage.addListener((request, sender, sendResponse) => {
+  if (request.type === "changeColumns") {
+    document.documentElement.style.setProperty("--columns", request.columns);
+  }
+});

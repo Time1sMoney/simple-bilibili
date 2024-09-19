@@ -1,14 +1,16 @@
+import react from "@vitejs/plugin-react-swc";
 import { resolve } from "path";
 import { defineConfig } from "vite";
 export default defineConfig({
+  plugins: [react()],
   build: {
     outDir: "dist",
     rollupOptions: {
       input: {
-        background: resolve(__dirname, "src/background.ts"),
-        content: resolve(__dirname, "src/content.ts"),
+        background: resolve(__dirname, "src/background"),
+        content: resolve(__dirname, "src/content"),
+        inject_style: resolve(__dirname, "src/style/inject_style.css"),
         popup: resolve(__dirname, "src/popup.html"),
-        inject_style: resolve(__dirname, "src/inject_style.css"),
       },
       output: {
         format: "esm",
