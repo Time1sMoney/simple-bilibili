@@ -39,8 +39,9 @@
   left: unset !important;
   top: unset !important;
   right:  40px !important;
-  bottom: 40px !important;
+  top: 50% !important;
   z-index: 9999 !important;
+  transform: translateY(-50%) !important;
 }
 .feed-roll-btn::after {
   content: "Shift + F";
