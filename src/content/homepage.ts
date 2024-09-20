@@ -1,3 +1,8 @@
+/**
+ *  This script is injected into the Bilibili homepage to modify the default layout.
+ *  Scope url : https://www.bilibili.com/
+ */
+
 const searchBarContainer = document.querySelector(
   ".center-search-container"
 ) as HTMLElement;

@@ -3,7 +3,7 @@
   "name": "Simple Bilibili",
   "version": "1.0",
   "description": "A simple Chrome extension to rewrite bilibili's homepage layout.",
-  "permissions": ["storage", "scripting", "activeTab"],
+  "permissions": ["storage", "scripting", "activeTab", "tabs"],
   "background": {
     "service_worker": "src/background.js"
   },
@@ -19,9 +19,15 @@
   },
   "content_scripts": [
     {
-      "matches": ["https://www.bilibili.com/*"],
-      "js": ["src/content.js"],
-      "css": ["assets/inject_style.css"]
+      "matches": ["https://www.bilibili.com/"],
+      "js": ["src/homepage.js"],
+      "css": ["assets/inject_style.css"],
+      "type": "module"
+    },
+    {
+      "matches": ["https://*.bilibili.com/*"],
+      "js": ["src/record.js"],
+      "type": "module"
     }
   ]
 }

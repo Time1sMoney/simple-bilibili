@@ -8,7 +8,8 @@ export default defineConfig({
     rollupOptions: {
       input: {
         background: resolve(__dirname, "src/background"),
-        content: resolve(__dirname, "src/content"),
+        homepage: resolve(__dirname, "src/content/homepage.ts"),
+        record: resolve(__dirname, "src/content/record.ts"),
         inject_style: resolve(__dirname, "src/style/inject_style.css"),
         popup: resolve(__dirname, "src/popup.html"),
       },
