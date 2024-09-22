@@ -39,9 +39,24 @@ const observer = new MutationObserver(() => {
 
 observer.observe(document.body, { childList: true, subtree: true });
 
-/**动态设置columns */
-chrome.runtime.onMessage.addListener((request, sender, sendResponse) => {
-  if (request.type === "changeColumns") {
-    document.documentElement.style.setProperty("--columns", request.columns);
-  }
-});
+function setup() {
+  // 获取chrome storage中的columns，如果没有则设置默认值
+  chrome.storage.local.get("cols", ({ cols }) => {
+    if (cols) {
+      document.documentElement.style.setProperty("--columns", cols);
+    } else {
+      chrome.storage.local.set({ cols: 4 });
+    }
+  });
+
+  //监听chrome storage的变化，动态设置columns
+  chrome.storage.local.onChanged.addListener((changes) => {
+    if ("cols" in changes) {
+      document.documentElement.style.setProperty(
+        "--columns",
+        changes.cols.newValue
+      );
+    }
+  });
+}
+setup();

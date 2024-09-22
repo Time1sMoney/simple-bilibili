@@ -1,4 +1,5 @@
 import { useEffect, useState } from "react";
+import { TimeOfDay } from "../types";
 import { formatTime } from "./format";
 
 interface RecordTimeMessage {
@@ -6,35 +7,47 @@ interface RecordTimeMessage {
   time: number;
 }
 
+function getDate() {
+  const date = new Date();
+  const year = date.getFullYear();
+  const month = date.getMonth() + 1;
+  const day = date.getDate();
+
+  return `${year}-${month}-${day}`;
+}
+
 const Popup: React.FC = () => {
-  const [columns, setColumns] = useState(() => {
-    const cols = localStorage.getItem("cols");
-    return cols ? parseInt(cols) : 4;
-  });
-  const [time, setTime] = useState(0);
+  const [columns, setColumns] = useState(4);
+  const [todayTotalTime, setTodayTotalTime] = useState(0);
+
   const handleChangeColumns = (e: React.MouseEvent<HTMLButtonElement>) => {
-    const cols = (e.nativeEvent.target as HTMLButtonElement).innerHTML;
-    setColumns(parseInt(cols));
-    chrome.tabs.query({ active: true, currentWindow: true }, (tabs) => {
-      const target = tabs[0];
-      if (target && target.id) {
-        chrome.tabs.sendMessage(target.id, {
-          type: "changeColumns",
-          columns: parseInt(cols),
-        });
-      }
+    const cols = parseInt((e.target as HTMLButtonElement).innerText);
+    chrome.storage.local.set({ cols }).then(() => {
+      setColumns(cols);
     });
   };
-  useEffect(() => {
-    localStorage.setItem("cols", `${columns}`);
-  }, [columns]);
 
   useEffect(() => {
-    const timer = setInterval(() => {
-      chrome.storage.local.get("time").then((res) => {
-        setTime(res.time);
-      });
+    // 获取本地存储的列数
+    chrome.storage.local.get("cols").then(({ cols }) => {
+      if (cols) {
+        setColumns(cols);
+      }
     });
+    // 设置定时器，每隔一秒获取本地存储的今日总时长
+    const date = getDate();
+    const timer = setInterval(() => {
+      chrome.storage.local.get("time").then(({ time }) => {
+        if (time) {
+          const target = (time as TimeOfDay[]).find(
+            (item) => item.date === date
+          );
+          if (target) {
+            setTodayTotalTime(target.value);
+          }
+        }
+      });
+    }, 1000);
     return () => clearInterval(timer);
   }, []);
   return (
@@ -46,10 +59,12 @@ const Popup: React.FC = () => {
       <ul className="divide-y-2 divide-gray-200 ">
         <li className="flex items-center py-2 px-4">
           <span>今日浏览时长</span>
-          <span className="ml-auto font-semibold">{formatTime(time)}</span>
+          <span className="ml-auto font-semibold">
+            {formatTime(todayTotalTime)}
+          </span>
         </li>
         <li className="flex items-center justify-between py-2 px-4">
-          <span>显示列数</span>
+          <span>首页显示列数</span>
           <div className="flex gap-2 items-center">
             <button
               className={`shadow rounded bg-gray-200 px-2 font-semibold ${

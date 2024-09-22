@@ -21,13 +21,12 @@
     {
       "matches": ["https://www.bilibili.com/"],
       "js": ["src/homepage.js"],
-      "css": ["assets/inject_style.css"],
-      "type": "module"
+      "css": ["assets/inject_style.css"]
     },
     {
       "matches": ["https://*.bilibili.com/*"],
       "js": ["src/record.js"],
-      "type": "module"
+      "run_at": "document_start"
     }
   ]
 }

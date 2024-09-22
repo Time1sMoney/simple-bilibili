@@ -8,7 +8,7 @@
 
   const recordBrowsingTime = () => {
     chrome.runtime.sendMessage({
-      type: "PAGE_RECORD_TIME"
+      type: "PAGE_RECORD_TIME",
     });
   };
 
@@ -23,5 +23,8 @@
   document.addEventListener("visibilitychange", visiblityHandler);
   document.addEventListener("DOMContentLoaded", () => {
     timer = setInterval(recordBrowsingTime, 1000);
+  });
+  window.addEventListener("beforeunload", () => {
+    if (timer) clearInterval(timer);
   });
 })();
