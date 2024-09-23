@@ -9,7 +9,11 @@
     "skipLibCheck": true,
     "moduleResolution": "bundler",
     "outDir": "./dist/src",
-    "types": ["chrome"]
+    "types": ["chrome"],
+    "baseUrl": ".",
+    "paths": {
+      "@/*":["src/*"]
+    }
   },
   "include": ["src/**/*"],
   "exclude": ["node_modules"]

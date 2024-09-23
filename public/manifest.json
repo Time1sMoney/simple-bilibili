@@ -5,7 +5,7 @@
   "description": "A simple Chrome extension to rewrite bilibili's homepage layout.",
   "permissions": ["storage", "scripting", "activeTab", "tabs"],
   "background": {
-    "service_worker": "src/background.js"
+    "service_worker": "src/js/background.js"
   },
   "icons": {
     "16": "icons/icon16.png",
@@ -20,12 +20,12 @@
   "content_scripts": [
     {
       "matches": ["https://www.bilibili.com/"],
-      "js": ["src/homepage.js"],
-      "css": ["assets/inject_style.css"]
+      "js": ["src/js/homepage.js"],
+      "css": ["src/css/inject_style.css"]
     },
     {
       "matches": ["https://*.bilibili.com/*"],
-      "js": ["src/record.js"],
+      "js": ["src/js/recorder.js"],
       "run_at": "document_start"
     }
   ]

@@ -1,19 +1,10 @@
+import { formatTime, getDate } from "@/utils/time";
 import { useEffect, useState } from "react";
-import { TimeOfDay } from "../types";
-import { formatTime } from "./format";
+import { TimeOfDay } from "../../types";
 
 interface RecordTimeMessage {
   type: string;
   time: number;
-}
-
-function getDate() {
-  const date = new Date();
-  const year = date.getFullYear();
-  const month = date.getMonth() + 1;
-  const day = date.getDate();
-
-  return `${year}-${month}-${day}`;
 }
 
 const Popup: React.FC = () => {
@@ -27,6 +18,9 @@ const Popup: React.FC = () => {
     });
   };
 
+  const checkTimeRecord = () => {
+    chrome.tabs.create({ url: chrome.runtime.getURL("src/record.html") });
+  };
   useEffect(() => {
     // 获取本地存储的列数
     chrome.storage.local.get("cols").then(({ cols }) => {
@@ -91,6 +85,9 @@ const Popup: React.FC = () => {
               5
             </button>
           </div>
+        </li>
+        <li className="flex justify-center">
+          <button onClick={checkTimeRecord}>查看浏览时间记录</button>
         </li>
       </ul>
     </div>

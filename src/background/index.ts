@@ -1,17 +1,9 @@
+import { getDate } from "@/utils/time";
 import { TimeOfDay } from "../types";
 
 let totalTime = 0; // seconds
 
 let date = "";
-
-function getDate() {
-  const date = new Date();
-  const year = date.getFullYear();
-  const month = date.getMonth() + 1;
-  const day = date.getDate();
-
-  return `${year}-${month}-${day}`;
-}
 
 function init() {
   date = getDate();
