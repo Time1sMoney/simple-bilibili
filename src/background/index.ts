@@ -3,10 +3,9 @@ import { TimeOfDay } from "../types";
 
 let totalTime = 0; // seconds
 
-let date = "";
+const date = getDate();
 
 function init() {
-  date = getDate();
   const todayDefault = {
     date,
     value: 0,
