@@ -86,8 +86,13 @@ const Popup: React.FC = () => {
             </button>
           </div>
         </li>
-        <li className="flex justify-center">
-          <button onClick={checkTimeRecord}>查看浏览时间记录</button>
+        <li className="flex justify-center py-2 px-4">
+          <button
+            className="shadow rounded bg-pink-500 hover:opacity-80 text-white px-4 py-2"
+            onClick={checkTimeRecord}
+          >
+            👉 查看浏览时间记录
+          </button>
         </li>
       </ul>
     </div>
