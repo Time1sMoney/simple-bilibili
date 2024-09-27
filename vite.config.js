@@ -33,6 +33,10 @@ export default defineConfig({
           }
           return "src/assets/[name].[ext]";
         },
+        manualChunks: {
+          react: ["react", "react-dom"],
+          recharts: ["recharts"],
+        },
       },
     },
   },
