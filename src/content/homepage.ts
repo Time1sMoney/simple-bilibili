@@ -3,22 +3,33 @@
  *  Scope url : https://www.bilibili.com/
  */
 
-const searchBarContainer = document.querySelector(
-  ".center-search-container"
-) as HTMLElement;
-const headerBanner = document.querySelector(
-  ".bili-header__banner"
-) as HTMLElement;
+let hasFocus = false;
+const header = document.querySelector(".bili-header__bar") as HTMLElement;
+const logo = document.querySelector(".inner-logo") as HTMLLinkElement;
+
 const feedRollBtn = document.querySelector(".feed-roll-btn") as HTMLElement;
 
+// 为首页输入框添加键盘事件
+const input = document.querySelector(".nav-search-input") as HTMLInputElement;
+if (input) {
+  input.addEventListener("focusout", () => (hasFocus = false));
+  window.addEventListener("keydown", (e) => {
+    if (e.key === "/") {
+      if (!hasFocus) {
+        e.preventDefault();
+        input.focus();
+        hasFocus = true;
+      }
+    }
+  });
+}
+
 function layout() {
-  // Layout the search bar
-  if (searchBarContainer && headerBanner) {
-    const container = document.createElement("div");
-    container.classList.add("simple-bilibili-search-container");
-    container.appendChild(searchBarContainer);
-    headerBanner.appendChild(container);
+  // 调整logo位置
+  if (header && logo) {
+    header.insertBefore(logo, header.firstChild);
   }
+  // 调整feedroll按钮位置并添加键盘事件
   if (feedRollBtn) {
     document.body.appendChild(feedRollBtn);
     window.addEventListener("keydown", (e) => {
@@ -31,7 +42,7 @@ function layout() {
 }
 
 const observer = new MutationObserver(() => {
-  if (searchBarContainer && headerBanner && feedRollBtn) {
+  if (header && logo && feedRollBtn) {
     layout();
     observer.disconnect();
   }

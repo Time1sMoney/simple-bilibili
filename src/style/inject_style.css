@@ -6,8 +6,11 @@
   display: none !important;
 }
  /* 修改顶部 */
-.bili-header__bar {
-  justify-content: end !important;
+ .bili-header__bar {
+  padding:  0 140px !important;
+ }
+ .center-search__bar {
+  max-width:  800px !important;
 }
 .bili-header .bili-header__banner {
   z-index: 1000 !important;
@@ -17,9 +20,6 @@
 }
 .right-entry > .right-entry-item {
   display: none !important;
-}
-.right-entry {
-  margin-right: 116px !important;
 }
 .vip-wrap {
   display: none !important;
@@ -66,21 +66,6 @@
 .container {
   grid-template-columns: repeat(var(--columns), 1fr) !important; 
 }
-
-.simple-bilibili-search-container {
-  position: absolute;
-  left: 50%;
-  top: 50%;
-  transform: translate(-50%, -50%);
-  width: 50%;
-}
-
-.center-search__bar {
-  margin: 0 !important;
-  min-width: none !important;
-  max-width: none !important;
-  width: 100% !important;
-}
  /* 隐藏推荐主播卡片 */
 .floor-single-card {
   display: none !important;
@@ -91,4 +76,12 @@
 }
 .feed-card,.bili-video-card {
   margin: 0 !important;
+}
+/* 隐藏adbloack提示 */
+.adblock-tips {
+  display: none !important;
+}
+
+.header-channel-fixed-left,.header-channel-fixed-center {
+  display: none !important;
 }
