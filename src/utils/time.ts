@@ -15,6 +15,6 @@ export function formatTime(time: number): string {
   time %= 3600;
   m = Math.floor(time / 60);
   time %= 60;
-  s = time;
+  s = Math.floor(time);
   return (h > 0 ? h + "时" : "") + (m > 0 ? m + "分" : "") + s + "秒";
 }
