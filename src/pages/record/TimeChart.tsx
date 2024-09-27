@@ -30,15 +30,10 @@ const CustomTooltip = (props: TooltipProps<number, string>) => {
 const TimeChart: React.FC<Props> = ({ data }) => {
   return (
     <ResponsiveContainer width="100%" height="100%">
-      <BarChart
-        data={data}
-        margin={{
-          left: 20,
-        }}
-      >
+      <BarChart data={data}>
         <CartesianGrid />
         <XAxis dataKey="date" />
-        <YAxis label={{ value: "秒", position: "insideTopLeft", offset: 5 }} />
+        <YAxis />
         <Tooltip
           content={<CustomTooltip />}
           formatter={(value: number) => formatTime(value)}

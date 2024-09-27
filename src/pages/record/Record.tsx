@@ -33,8 +33,7 @@ const Record: React.FC = () => {
     });
   }, []);
   return (
-    <div className="container mx-auto p-8 space-y-4">
-      <div className="text-end">*仅显示最近30天的数据</div>
+    <div className="container mx-auto h-full p-8 space-y-4">
       <div className="rounded-lg bg-white p-4 space-y-4">
         <div className="w-1/2">
           总时长：{" "}
@@ -56,8 +55,12 @@ const Record: React.FC = () => {
           </div>
         )}
       </div>
-      <div className="h-[500px] p-6 rounded-lg bg-white">
+      <div className="h-[500px] p-6 rounded-lg bg-white space-y-2">
+        <p>单位：秒</p>
         <TimeChart data={timeData} />
+      </div>
+      <div className="text-end absolute left-1/2 bottom-6 -translate-x-1/2">
+        *仅显示最近30天的数据
       </div>
     </div>
   );
