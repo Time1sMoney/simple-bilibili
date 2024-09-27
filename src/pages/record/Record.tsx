@@ -1,55 +1,7 @@
 import { TimeOfDay } from "@/types";
 import { formatTime } from "@/utils/time";
-import { produce } from "immer";
 import { useEffect, useMemo, useState } from "react";
-import BaseChart, { BaseChartOption } from "./BaseChart";
-
-const defaultOption: BaseChartOption = {
-  tooltip: {
-    trigger: "axis",
-    formatter: (params) =>
-      `时长： ${formatTime(
-        Array.isArray(params)
-          ? (params[0].value as number)
-          : (params.value as number)
-      )}`,
-  },
-  grid: {
-    left: "3%",
-    right: "4%",
-    bottom: "3%",
-    containLabel: true,
-  },
-  xAxis: [
-    {
-      type: "category",
-      data: [],
-      
-    },
-  ],
-  yAxis: [
-    {
-      type: "value",
-      axisLabel: {
-        formatter: (value: number) => formatTime(value),
-      },
-    },
-  ],
-  series: [
-    {
-      name: "duration",
-      type: "bar",
-      showBackground: true,
-      backgroundStyle: {
-        color: "rgba(180, 180, 180, 0.2)",
-      },
-      data: [],
-      itemStyle: {
-        color: "#FF6699",
-      },
-    },
-  ],
-};
+import TimeChart from "./TimeChart";
 
 function getMaxDay(timeData: TimeOfDay[]) {
   let maxDay = timeData[0].date,
@@ -75,15 +27,6 @@ const Record: React.FC = () => {
     return timeData.reduce((acc, cur) => acc + cur.value, 0);
   }, [timeData]);
 
-  const option = useMemo(() => {
-    return produce(defaultOption, (draft) => {
-      //@ts-ignore
-      draft.xAxis[0].data = timeData.map((item) => item.date);
-      //@ts-ignore
-      draft.series[0].data = timeData.map((item) => item.value);
-    });
-  }, [timeData]);
-
   useEffect(() => {
     chrome.storage.local.get("time", (result) => {
       setTimeData(result.time || []);
@@ -92,27 +35,29 @@ const Record: React.FC = () => {
   return (
     <div className="container mx-auto p-8 space-y-4">
       <div className="text-end">*仅显示最近30天的数据</div>
-      <div className="w-1/2">
-        总时长：{" "}
-        <span className="text-3xl font-semibold">{formatTime(total)}</span>
-      </div>
-      <div className="w-1/2">
-        平均每天浏览Bilibili
-        <span className="text-xl font-semibold ml-2">
-          {formatTime(total / timeData.length)}
-        </span>
-      </div>
-      {timeData.length !== 0 && (
+      <div className="rounded-lg bg-white p-4 space-y-4">
         <div className="w-1/2">
-          你在{" "}
-          <span className="text-xl font-semibold mx-2">
-            {getMaxDay(timeData)}
-          </span>
-          这一天浏览最久
+          总时长：{" "}
+          <span className="text-3xl font-semibold">{formatTime(total)}</span>
         </div>
-      )}
-      <div>
-        <BaseChart option={option} height={500} />
+        <div className="w-1/2">
+          平均每天浏览Bilibili
+          <span className="text-xl font-semibold ml-2">
+            {formatTime(total / timeData.length)}
+          </span>
+        </div>
+        {timeData.length !== 0 && (
+          <div className="w-1/2">
+            你在{" "}
+            <span className="text-xl font-semibold mx-2">
+              {getMaxDay(timeData)}
+            </span>
+            这一天浏览最久
+          </div>
+        )}
+      </div>
+      <div className="h-[500px] p-6 rounded-lg bg-white">
+        <TimeChart data={timeData} />
       </div>
     </div>
   );
