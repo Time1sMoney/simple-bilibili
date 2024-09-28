@@ -1,6 +1,7 @@
 import { TimeOfDay } from "@/types";
 import { formatTime } from "@/utils/time";
 import { useEffect, useMemo, useState } from "react";
+import ThemeSwitcher from "./ThemeSwitcher";
 import TimeChart from "./TimeChart";
 
 function getMaxDay(timeData: TimeOfDay[]) {
@@ -34,28 +35,34 @@ const Record: React.FC = () => {
   }, []);
   return (
     <div className="container mx-auto h-full p-8 space-y-4">
-      <div className="rounded-lg bg-white p-4 space-y-4">
-        <div className="w-1/2">
-          总时长：{" "}
-          <span className="text-3xl font-semibold">{formatTime(total)}</span>
-        </div>
-        <div className="w-1/2">
-          平均每天浏览Bilibili
-          <span className="text-xl font-semibold ml-2">
-            {formatTime(total / timeData.length)}
-          </span>
-        </div>
-        {timeData.length !== 0 && (
+      <div className="flex gap-4">
+        <div className="card space-y-4 flex-1">
           <div className="w-1/2">
-            你在{" "}
-            <span className="text-xl font-semibold mx-2">
-              {getMaxDay(timeData)}
-            </span>
-            这一天浏览最久
+            总时长：{" "}
+            <span className="text-3xl font-semibold">{formatTime(total)}</span>
           </div>
-        )}
+          <div className="w-1/2">
+            平均每天浏览Bilibili
+            <span className="text-xl font-semibold ml-2">
+              {formatTime(total / timeData.length)}
+            </span>
+          </div>
+          {timeData.length !== 0 && (
+            <div className="w-1/2">
+              你在{" "}
+              <span className="text-xl font-semibold mx-2">
+                {getMaxDay(timeData)}
+              </span>
+              这一天浏览最久
+            </div>
+          )}
+        </div>
+        <div className="w-1/5 card flex justify-center items-center">
+          <ThemeSwitcher />
+        </div>
       </div>
-      <div className="h-[500px] p-6 rounded-lg bg-white space-y-2">
+
+      <div className="h-[500px] card p-6 space-y-2">
         <p>单位：秒</p>
         <TimeChart data={timeData} />
       </div>

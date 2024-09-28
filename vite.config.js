@@ -36,6 +36,7 @@ export default defineConfig({
         manualChunks: {
           react: ["react", "react-dom"],
           recharts: ["recharts"],
+          iconify: ["@iconify/react"],
         },
       },
     },

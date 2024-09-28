@@ -9,6 +9,8 @@
     "preview": "vite preview"
   },
   "devDependencies": {
+    "@iconify-icons/tabler": "^1.2.95",
+    "@iconify/react": "^5.0.2",
     "@types/chrome": "^0.0.271",
     "@types/react": "^18.3.7",
     "@types/react-dom": "^18.3.0",
