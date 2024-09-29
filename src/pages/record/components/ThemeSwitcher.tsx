@@ -28,8 +28,8 @@ const ThemeSwitcher: React.FC = () => {
     chrome.storage.local.set({ theme });
   }, [theme]);
   return (
-    <div
-      className="rounded-full bg-[#FF6699] group text-white p-1 flex justify-center items-center cursor-pointer"
+    <button
+      className="relative rounded-full hover:bg-gray-200 dark:hover:bg-gray-700 group p-2 flex justify-center items-center cursor-pointer"
       onClick={toggleTheme}
     >
       <Icon
@@ -37,7 +37,7 @@ const ThemeSwitcher: React.FC = () => {
         fontSize={24}
         className="group-hover:scale-110"
       />
-    </div>
+    </button>
   );
 };
 export default ThemeSwitcher;
