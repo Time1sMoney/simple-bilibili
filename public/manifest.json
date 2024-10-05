@@ -21,7 +21,7 @@
   },
   "content_scripts": [
     {
-      "matches": ["https://www.bilibili.com/"],
+      "matches": ["https://www.bilibili.com/","https://www.bilibili.com/?*"],
       "js": ["src/js/homepage.js"],
       "css": ["src/css/inject_style.css"]
     },
