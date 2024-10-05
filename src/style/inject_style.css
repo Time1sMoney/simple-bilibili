@@ -33,7 +33,7 @@
   padding: 0 !important;
   border-right: none !important;
 }
-
+/* 修改视频刷新按钮*/
 .feed-roll-btn {
   position: fixed !important;
   left: unset !important;
@@ -70,12 +70,19 @@
 .floor-single-card {
   display: none !important;
 }
+/* 修改直播卡片*/
+.bili-live-card {
+  margin: 0 !important;
+}
  /* 隐藏广告卡片 */
 .bili-video-card:not(.enable-no-interest) {
   display: none !important;
 }
 .feed-card,.bili-video-card {
   margin: 0 !important;
+}
+.feed-card > :not(.enable-no-interest) {
+  display: none !important;
 }
 /* 隐藏adbloack提示 */
 .adblock-tips {
