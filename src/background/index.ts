@@ -10,7 +10,7 @@ function init() {
     date,
     value: 0,
   };
-  // Initialize time from local storage
+  // 初始化时间数据
   chrome.storage.local.get("time").then(({ time }) => {
     if (time) {
       const target = (time as TimeOfDay[]).find((item) => item.date === date);
@@ -30,13 +30,13 @@ function init() {
       chrome.storage.local.set({ time: [todayDefault] });
     }
   });
-  // Listen for messages from content script
+  // 接收来自内容脚本的消息，更新浏览总时间
   chrome.runtime.onMessage.addListener((request, sender, sendResponse) => {
     if (request.type === "PAGE_RECORD_TIME") {
       totalTime++;
     }
   });
-  // Store time in local storage every 10 seconds
+  // 每隔10秒更新一次本地存储
   setInterval(() => {
     chrome.storage.local.get("time", ({ time }) => {
       if (time) {
@@ -57,6 +57,18 @@ function init() {
       }
     });
   }, 1000 * 10);
+  // 监听推荐视频请求的完成
+  chrome.webRequest.onCompleted.addListener(
+    (details) => {
+      const id = details.tabId;
+      chrome.tabs.sendMessage(id, "RECOMMEND_REQUEST_COMPLETE");
+    },
+    {
+      urls: [
+        "https://api.bilibili.com/x/web-interface/wbi/index/top/feed/rcmd*",
+      ],
+    }
+  );
 }
 
 init();
