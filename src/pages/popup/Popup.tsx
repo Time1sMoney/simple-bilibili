@@ -19,7 +19,7 @@ const Popup: React.FC = () => {
   };
 
   const checkTimeRecord = () => {
-    chrome.tabs.create({ url: chrome.runtime.getURL("src/record.html") });
+    chrome.tabs.create({ url: chrome.runtime.getURL("html/record.html") });
   };
   useEffect(() => {
     // 获取本地存储的列数

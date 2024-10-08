@@ -21,8 +21,6 @@ function getMaxDay(timeData: TimeOfDay[]) {
 }
 
 // TODO: 优化页面样式
-// TODO: 调整打包后目录结构，html单独放置在html文件夹中
-
 const Record: React.FC = () => {
   const [timeData, setTimeData] = useState<TimeOfDay[]>([]);
 

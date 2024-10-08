@@ -6,7 +6,7 @@
   "permissions": ["webRequest", "storage", "scripting", "activeTab", "tabs"],
   "host_permissions": ["https://*.bilibili.com/*"],
   "background": {
-    "service_worker": "src/js/background.js",
+    "service_worker": "js/background.js",
     "type": "module"
   },
   "icons": {
@@ -15,19 +15,19 @@
     "128": "icons/icon128.png"
   },
   "action": {
-    "default_popup": "src/popup.html",
+    "default_popup": "html/popup.html",
     "default_icon": "icons/icon48.png",
     "default_title": "Simple Bilibili"
   },
   "content_scripts": [
     {
       "matches": ["https://www.bilibili.com/","https://www.bilibili.com/?*"],
-      "js": ["src/js/homepage.js"],
-      "css": ["src/css/inject_style.css"]
+      "js": ["js/homepage.js"],
+      "css": ["css/homepage_inject.css"]
     },
     {
       "matches": ["https://*.bilibili.com/*"],
-      "js": ["src/js/recorder.js"],
+      "js": ["js/recorder.js"],
       "run_at": "document_start"
     }
   ]
