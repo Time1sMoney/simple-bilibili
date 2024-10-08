@@ -19,7 +19,7 @@ function getMaxDay(timeData: TimeOfDay[]) {
   }
   return maxDay;
 }
-// TODO: 添加表格形式的数据展示
+
 // TODO: 优化页面样式
 // TODO: 调整打包后目录结构，html单独放置在html文件夹中
 
@@ -62,9 +62,21 @@ const Record: React.FC = () => {
           </div>
         )}
       </div>
-      <div className="h-[500px] card p-6 space-y-2">
-        <p>单位：秒</p>
-        <TimeChart data={timeData} />
+      <div className="card p-6 space-y-2">
+        {timeData.length > 0 && (
+          <div className="flex justify-center items-center gap-2">
+            <em className="font-semibold">{timeData[0].date}</em>至
+            <em className="font-semibold">
+              {timeData[timeData.length - 1].date}
+            </em>
+            总计
+            <em className="font-semibold">{timeData.length}</em>天 统计数据
+            <span>（单位：秒）</span>
+          </div>
+        )}
+        <div className="h-[500px]">
+          <TimeChart data={timeData} />
+        </div>
       </div>
       <div className="absolute left-1/2 bottom-6 -translate-x-1/2 text-sm text-zinc-700 dark:text-zinc-500 opacity-80">
         *仅显示最近30天的数据
