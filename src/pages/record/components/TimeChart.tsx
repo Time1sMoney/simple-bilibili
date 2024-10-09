@@ -15,6 +15,7 @@ import {
 interface Props {
   data: TimeOfDay[];
 }
+
 const CustomTooltip = (props: TooltipProps<number, string>) => {
   const { active, payload } = props;
   if (active && payload && payload.length) {
@@ -56,6 +57,10 @@ const TimeChart: React.FC<Props> = ({ data }) => {
         <XAxis
           dataKey="date"
           tick={{ fill: theme === "dark" ? "#fff" : "#000" }}
+          interval={0}
+          tickFormatter={(date: string) =>
+            date.substring(date.indexOf("-") + 1)
+          }
         />
         <YAxis tick={{ fill: theme === "dark" ? "#fff" : "#000" }} />
         <Tooltip
