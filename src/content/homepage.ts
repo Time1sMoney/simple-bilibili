@@ -30,7 +30,7 @@ function filterCard() {
   const cards = document.querySelectorAll(".feed-card");
   for (const card of cards) {
     if (card.children[0] && card.children[0].children.length === 1) {
-      card.setAttribute("style", "display:none !important");
+      card.setAttribute("style", "display:none");
       return;
     }
   }
@@ -88,5 +88,5 @@ const observer = new MutationObserver(() => {
 
 observer.observe(document.body, { childList: true, subtree: true });
 
-registerEvent()
+registerEvent();
 initChromeEvent();
