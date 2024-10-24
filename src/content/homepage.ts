@@ -29,7 +29,11 @@ function registerEvent() {
 function filterCard() {
   const cards = document.querySelectorAll(".feed-card");
   for (const card of cards) {
-    if (card.children[0] && card.children[0].children.length === 1) {
+    if (
+      card.children[0] &&
+      (!card.children[0].classList.contains("enable-no-interest") ||
+        card.children[0].children.length === 1)
+    ) {
       card.setAttribute("style", "display:none");
       return;
     }
