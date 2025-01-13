@@ -29,12 +29,14 @@ function registerEvent() {
 function filterCard() {
   const cards = document.querySelectorAll(".feed-card");
   for (const card of cards) {
+    const videoCardElement = card.children[0];
+    const videoCardWrapperElement = videoCardElement.children[0];
     if (
-      card.children[0] &&
-      (!card.children[0].classList.contains("enable-no-interest") ||
-        card.children[0].children.length === 1)
+      videoCardElement &&
+      videoCardWrapperElement &&
+      !videoCardWrapperElement.classList.contains("bili-video-card__wrap")
     ) {
-      card.setAttribute("style", "display:none");
+      card.classList.add("hidden");
       return;
     }
   }

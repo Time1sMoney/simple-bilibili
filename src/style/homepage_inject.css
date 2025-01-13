@@ -1,6 +1,9 @@
 :root {
   --columns: 4;
 }
+.hidden {
+  display: none !important;
+}
  /* 隐藏推荐 swiper */
 .recommended-swipe {
   display: none !important;
@@ -74,14 +77,10 @@
 .bili-live-card {
   margin: 0 !important;
 }
- /* 隐藏广告卡片 */
-.bili-video-card:not(.enable-no-interest) {
-  display: none !important;
-}
 .feed-card,.bili-video-card {
   margin: 0 !important;
 }
-.feed-card > :not(.enable-no-interest) {
+.bili-video-card > *:not(.bili-video-card__wrap){
   display: none !important;
 }
 /* 隐藏adbloack提示 */
