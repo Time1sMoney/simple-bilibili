@@ -6,7 +6,7 @@ const Header: React.FC = () => {
     <div className="flex justify-end items-center gap-4">
       <ThemeSwitcher />
       <a
-        href="https://github.com/chenbinli-dev/simple-bilibili"
+        href="https://github.com/Time1sMoney/simple-bilibili"
         target="_blank"
       >
         <button className="rounded-full p-2 hover:bg-gray-200 group dark:hover:bg-gray-700">
